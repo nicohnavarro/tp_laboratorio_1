@@ -39,12 +39,12 @@ void menuCalculadora(void)
                 system("clear");
                 division=dividir(numero1,numero2,&resultadoDivision,"NO SE PUEDE DIVIDIR POR CERO\n");
                 resultadoFactorialA=factorial(numero1);
-                if(resultadoFactorialA==0)
+                if(resultadoFactorialA==-1)
                 {
                     printf("Error al calcular factorial de A\n");
                 }
                 resultadoFactorialB=factorial(numero2);
-                if(resultadoFactorialB==0)
+                if(resultadoFactorialB==-1)
                 {
                     printf("Error al calcular factorial de B\n");
                 }
@@ -160,7 +160,7 @@ int factorial (int numero)
     }
     else
     {
-        return 0;
+        return -1;
     }
 }
 
