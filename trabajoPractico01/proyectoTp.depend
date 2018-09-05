@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1536122684 source:/home/nicolas/tpLaboratorio1/proyectoTp/main.c
+	<stdio.h>
+	<stdlib.h>
+	"biblioteca_utn.h"
+
+1536121219 source:/home/nicolas/tpLaboratorio1/proyectoTp/biblioteca_utn.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+	"biblioteca_utn.h"
+
+1536126607 /home/nicolas/tpLaboratorio1/proyectoTp/biblioteca_utn.h
+
