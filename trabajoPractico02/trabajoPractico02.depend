@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1537852349 source:/home/nicolas/UTN/tpLaboratorio1/trabajoPractico02/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"employee.h"
+	<string.h>
+	<stdio_ext.h>
+
+1537849182 source:/home/nicolas/UTN/tpLaboratorio1/trabajoPractico02/employee.c
+	"utn.h"
+	"employee.h"
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+
+1537834413 /home/nicolas/UTN/tpLaboratorio1/trabajoPractico02/utn.h
+
+1537852349 /home/nicolas/UTN/tpLaboratorio1/trabajoPractico02/employee.h
+	"utn.h"
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<stdio_ext.h>
+
+1537832917 source:/home/nicolas/UTN/tpLaboratorio1/trabajoPractico02/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
