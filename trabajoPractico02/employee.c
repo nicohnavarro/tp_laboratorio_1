@@ -30,6 +30,20 @@ int initEmployees(Employees* empleado,int length,int valor)
     return retorno;
 }
 
+int getAlgunaAlta(Employees* empleado,int length)
+{
+    int i;
+    int retorno=-1;
+    for(i=0;i<length;i++)
+    {
+        if(empleado[i].isEmpty==0)
+        {
+            retorno=0;
+        }
+    }
+    return retorno;
+}
+
 int getIndiceVacio(Employees* empleado,int length)
 {
     int i;
@@ -45,33 +59,13 @@ int getIndiceVacio(Employees* empleado,int length)
     return retorno;
 }
 
-int getAnyAlta(Employees* empleado,int length)
-{
-    int retorno=-1;
-    int i;
-    if(empleado!=NULL && length>0)
-    {
-        for(i=0;i<length;i++)
-        {
-            if(empleado[i].isEmpty==0)
-            {
-                retorno=0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
-int addEmployee(Employees* empleado,int length)
+int addEmployee(Employees* empleado,int length,int index)
 {
     int retorno=-1;
     char auxName[51];
     char auxLastName[51];
     float auxSalary;
     int auxSector;
-    int index;
-    index=getIndiceVacio(empleado,length);
     if(index<length)
     {
         if(utn_getLetras(auxName,51,2,"INGRESE NOMBRE DEL EMPLEADO: ","ERROR DE NOMBRE.")==0)
@@ -97,105 +91,71 @@ int addEmployee(Employees* empleado,int length)
     return retorno;
 }
 
-int findEmployeeById(Employees* empleado,int length)
+int findEmployeeById(Employees* empleado,int length,int id)
 {
     int i;
     int retorno=-1;
-    int auxId;
     if(empleado!=NULL && length>0)
     {
-        if(getAnyAlta(empleado,length)==0)
-        {
-            if(utn_getEntero(&auxId,2,"INGRESE EL ID DEL EMPLEADO QUE BUSCA: ","ERROR DE ID.",0,length)==0 )
+            for(i=0;i<length;i++)
             {
-                for(i=0;i<length;i++)
+                if(empleado[i].isEmpty==0 && empleado[i].id==id)
                 {
-                    if(empleado[i].id==auxId && empleado[i].isEmpty==0)
-                    {
-                        retorno=i;
-                        break;
-                    }
-                    else
-                        retorno=-1;
+                    return i;
+                    break;
                 }
             }
-        }
     }
     return retorno;
 }
 
-int removeEmployeeById(Employees* empleado,int length,int id)
+int removeEmployeeById(Employees* empleado,int length,int index)
 {
-    int i;
     int retorno=-1;
-    if(id!=-1)
-    {
-        for(i=0;i<length;i++)
-        {
-            if(empleado[i].id==id && empleado[i].isEmpty==0)
-            {
-                empleado[i].isEmpty=1;
-                retorno=0;
-                printf("EL EMPLEADO DE ID : [%d] HA SIDO DADO DE BAJA.\n",i);
-                break;
-            }
-        }
-    }
-    else
-        printf("NO HAY EMPLEADOS DADOS DE ALTA.\n");
-
+    empleado[index].isEmpty=1;
+    printf("Se removio el Empleado de id[%d]\n",empleado[index].id);
     return retorno;
 }
 
-int modificarEmployee(Employees* empleado,int length)
+int modificarEmployee(Employees* empleado,int length,int index)
 {
-    int index;
     int retorno=-1;
     int opcion;
     char auxNombre[51];
     char auxApellido[51];
     float auxSalario;
     int auxSector;
-    index=findEmployeeById(empleado,length);
-    if(index==-1)
+    printf("Que desea modificar del Empleado ID[%d]\n",empleado[index].id);
+    printf("NOMBRE (1)\nAPELLIDO (2)\nSALARIO(3)\nSECTOR(4)");
+    utn_getEntero(&opcion,2,"INGRESE OPCION: ","ERROR",1,4);
+    switch(opcion)
     {
-        printf("NO HAY EMPLEADOS DADOS DE ALTA.\n");
-
-    }
-    else
-    {
-        printf("Que desea modificar del Empleado ID[%d]\n",empleado[index].id);
-        printf("NOMBRE (1)\nAPELLIDO (2)\nSALARIO(3)\nSECTOR(4)");
-        utn_getEntero(&opcion,2,"INGRESE OPCION: ","ERROR",1,4);
-        switch(opcion)
-        {
-            case 1:if(utn_getLetras(auxNombre,51,2,"Ingrese Nuevo Nombre: ","Error")==0)
-                    {
-                        strcpy(empleado[index].name,auxNombre);
-                        retorno=0;
-                    }
-                    break;
-            case 2:if(utn_getLetras(auxApellido,51,2,"Ingrese Nuevo Apellido: ","Error")==0)
-                    {
-                        strcpy(empleado[index].lastName,auxApellido);
-                        retorno=0;
-                    }
-                    break;
-            case 3:if(utn_getFloat(&auxSalario,2,"ingrese Nuevo Salario: $","Error",0,120000)==0)
-                    {
-                        empleado[index].salary=auxSalario;
-                        retorno=0;
-                    }
-                    break;
-            case 4:if(utn_getEntero(&auxSector,2,"Ingrese Nuevo Sector: ","Error",0,5)==0)
-                    {
-                        empleado[index].sector=auxSector;
-                        retorno=0;
-                    }
-                    break;
-            default:
-                    break;
-        }
+        case 1:if(utn_getLetras(auxNombre,51,2,"Ingrese Nuevo Nombre: ","Error")==0)
+                {
+                    strcpy(empleado[index].name,auxNombre);
+                    retorno=0;
+                }
+                break;
+        case 2:if(utn_getLetras(auxApellido,51,2,"Ingrese Nuevo Apellido: ","Error")==0)
+                {
+                    strcpy(empleado[index].lastName,auxApellido);
+                    retorno=0;
+                }
+                break;
+        case 3:if(utn_getFloat(&auxSalario,2,"ingrese Nuevo Salario: $","Error",0,120000)==0)
+                {
+                    empleado[index].salary=auxSalario;
+                    retorno=0;
+                }
+                break;
+        case 4:if(utn_getEntero(&auxSector,2,"Ingrese Nuevo Sector: ","Error",0,5)==0)
+                {
+                    empleado[index].sector=auxSector;
+                    retorno=0;
+                }
+                break;
+        default:
+                break;
     }
     return retorno;
 }
@@ -205,20 +165,97 @@ int sortEmployeesByLastName(Employees* empleado,int length,int valor)
     int i;
     int j;
     int retorno=-1;
-    char auxLastName[51];
+    Employees auxEmpleado;
     for(i=1;i<length;i++)
     {
-        strcpy(auxLastName,empleado[i].lastName);
+        if(empleado[i].isEmpty==1)
+            continue;
+        strcpy(auxEmpleado.lastName,empleado[i].lastName);
         j=i-1;
-        while(j>=0 && (strcmp(auxLastName,empleado[j].lastName)<0))
+        while(j>=0 && (strcmp(auxEmpleado.lastName,empleado[j].lastName)<0) && valor==1)
         {
-            strcpy(empleado[j+1].lastName,empleado[j].lastName);
+            empleado[j+1]=empleado[j];
             j--;
         }
-        strcpy(empleado[j+1].lastName,auxLastName); //insertion
-    retorno=0;
+        empleado[j+1]=auxEmpleado; //insertion
+        retorno=0;
     }
     return retorno;
+}
+
+int quick_sortLastname(Employees*empleado,int limite_izq,int limite_der)
+{
+    int izq;
+    int der;
+    Employees auxiliar;
+    Employees pivote;
+    izq=limite_izq;
+    der=limite_der;
+    strcpy(pivote.lastName,empleado[(izq+der)/2].lastName);
+    do {
+        while((strcmp(empleado[izq].lastName,pivote.lastName)<0) && izq<limite_der)izq++;
+        while((strcmp(pivote.lastName,empleado[der].lastName)<0) && der>limite_izq)der--;
+        if(izq<=der)
+        {
+            auxiliar=empleado[izq];
+            empleado[izq]=empleado[der];
+            empleado[der]=auxiliar;
+            izq++;
+            der--;
+        }
+    }while(izq<=der);
+    if(limite_izq<der)
+    {
+        quick_sortLastname(empleado,limite_izq,der);
+    }
+    if(limite_der>izq)
+    {
+        quick_sortLastname(empleado,izq,limite_der);
+    }
+    return 0;
+}
+
+int quick_sortSector(Employees*empleado,int limite_izq,int limite_der)
+{
+    int izq;
+    int der;
+    Employees auxiliar;
+    Employees pivote;
+    izq=limite_izq;
+    der=limite_der;
+    pivote.sector=empleado[(izq+der)/2].sector;
+    do {
+        while(empleado[izq].sector<pivote.sector && izq<limite_der)izq++;
+        while(pivote.sector<empleado[der].sector && der>limite_izq)der--;
+        if(izq<=der)
+        {
+            auxiliar=empleado[izq];
+            empleado[izq]=empleado[der];
+            empleado[der]=auxiliar;
+            izq++;
+            der--;
+        }
+    }while(izq<=der);
+    if(limite_izq<der)
+    {
+        quick_sortSector(empleado,limite_izq,der);
+    }
+    if(limite_der>izq)
+    {
+        quick_sortSector(empleado,izq,limite_der);
+    }
+    return 0;
+}
+
+
+void qsLastname(Employees* empleado,int length)
+{
+    quick_sortLastname(empleado,0,(length-1));
+}
+
+void qsSector(Employees* empleado,int length)
+{
+    quick_sortSector(empleado,0,(length-1));
 }
 
 int printEmployees(Employees* empleado,int length)
@@ -239,6 +276,7 @@ int printEmployees(Employees* empleado,int length)
     }
     return retorno;
 }
+
 int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* promedio)
 {
     int retorno=-1;
@@ -253,6 +291,8 @@ int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* prome
             auxSumaSalarios+=empleado[i].salary;
             retorno=0;
         }
+        else
+            continue;
 
     }
     *sumaSalario=auxSumaSalarios;
@@ -260,7 +300,7 @@ int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* prome
     return retorno;
 }
 
-int empleadosSuperaPromedio(Employees* empleado,int length,float promedio,int* empleadosSP)
+int empleadosSuperaPromedio(Employees* empleado,int length,float* promedio,int* empleadosSP)
 {
     int retorno=-1;
     int i;
@@ -271,12 +311,14 @@ int empleadosSuperaPromedio(Employees* empleado,int length,float promedio,int* e
         {
             if(empleado[i].isEmpty==0)
             {
-                if(empleado[i].salary>promedio)
+                if(empleado[i].salary>*promedio)
                 {
                     cantidadEmpleados++;
                     retorno=0;
                 }
             }
+            else
+                continue;
         }
     }
     *empleadosSP=cantidadEmpleados;
