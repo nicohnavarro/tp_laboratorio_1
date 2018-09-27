@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<stdio_ext.h>
-#define QTY_EMPLEADOS 5
+#define QTY_EMPLEADOS 10
 
 static int generarID(void);
 
@@ -269,7 +269,7 @@ int printEmployees(Employees* empleado,int length)
         {
             if(empleado[i].isEmpty==0)
             {
-                printf("Nombre: %s\tApellido: %s\tSalario: $%.2f\tSector nro[%d]\tID[%d]\n",empleado[i].name,empleado[i].lastName,empleado[i].salary,empleado[i].sector,empleado[i].id);
+                printf("Nombre: [%s]-Apellido: [%s]-Salario: [$%.2f]-Sector nro[%d]-ID[%d]\n",empleado[i].name,empleado[i].lastName,empleado[i].salary,empleado[i].sector,empleado[i].id);
                 retorno=0;
             }
 
@@ -330,6 +330,10 @@ void menuEmployees(void)
 {
     Employees empleado[QTY_EMPLEADOS];
     initEmployees(empleado,QTY_EMPLEADOS,1);
+    setEmployees(empleado,0,"Ricardo","Perez",12000,1);
+    setEmployees(empleado,2,"Julio","Azaro",14500,3);
+    setEmployees(empleado,3,"Amalia","Zeta",14500,2);
+    setEmployees(empleado,5,"Enrique","Bonzo",9500,1);
     int index;
     int auxId;
     int opcion;
@@ -339,7 +343,7 @@ void menuEmployees(void)
     int empleadosSP;
     do
     {
-        printf("ALTA DE EMPLEADO (1) \nMODIFICACION DE EMPLEADO (2)\nBAJA DE EMPLEADO (3)\nINFORMES (4)\nSALIR (5)");
+        printf("1-ALTA DE EMPLEADO\n2-MODIFICACION DE EMPLEADO\n3-BAJA DE EMPLEADO\n4-INFORMES\n5-SALIR");
         utn_getEntero(&opcion,1,"INGRESE OPCION: ","ERROR",1,5);
         system("clear");
         switch(opcion)
@@ -428,3 +432,18 @@ void menuEmployees(void)
     }while(opcion!=5);
 }
 
+int setEmployees(Employees*empleado,int index,char*nombre,char*apellido,float salario,int sector)
+{
+    int retorno=-1;
+    if(index<QTY_EMPLEADOS)
+    {
+        strncpy(empleado[index].name,nombre,51);
+        strncpy(empleado[index].lastName,apellido,51);
+        empleado[index].salary=salario;
+        empleado[index].sector=sector;
+        empleado[index].isEmpty=0;
+        empleado[index].id=generarID();
+        retorno=0;
+    }
+    return retorno;
+}

@@ -30,6 +30,7 @@ void qsSector(Employees* empleado,int length);
 int printEmployees(Employees* empleado,int length);
 int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* promedio);
 int empleadosSuperaPromedio(Employees* empleado,int length,float* promedio,int* empleadosSP);
+int setEmployees(Employees*empleado,int index,char*nombre,char*apellido,float salario,int sector);
 void menuEmployees(void);
 
 #endif // EMPLOYEE_H_INCLUDED
