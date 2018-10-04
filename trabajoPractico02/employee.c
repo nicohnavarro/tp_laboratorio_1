@@ -15,6 +15,15 @@ static int generarID(void)
     return id;
 }
 
+
+/** \brief Inicializa el campo isEmpty de un Array
+ *
+ * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param valor->numero que se carga en el campo isEmpty
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int initEmployees(Employees* empleado,int length,int valor)
 {
     int i;
@@ -31,6 +40,13 @@ int initEmployees(Employees* empleado,int length,int valor)
     return retorno;
 }
 
+/** \brief Recorre el Array para saber si hay alguna alta
+ *
+ * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int getAlgunaAlta(Employees* empleado,int length)
 {
     int i;
@@ -45,6 +61,13 @@ int getAlgunaAlta(Employees* empleado,int length)
     return retorno;
 }
 
+/** \brief Recorre el Array para obtener un indice Vacio
+ *
+ * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \return (-1) ERROR // (i) Posicion del Array
+ *
+ */
 int getIndiceVacio(Employees* empleado,int length)
 {
     int i;
@@ -60,6 +83,14 @@ int getIndiceVacio(Employees* empleado,int length)
     return retorno;
 }
 
+/** \brief Dar Alta a un Empleado
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param index->Primer indice para cargar
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int addEmployee(Employees* empleado,int length,int index)
 {
     int retorno=-1;
@@ -92,6 +123,14 @@ int addEmployee(Employees* empleado,int length,int index)
     return retorno;
 }
 
+/** \brief Busca un Empleado por ID
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param id->ID del Empleado
+ * \return (-1) ERROR // (i) Posicion del Array de Empleados
+ *
+ */
 int findEmployeeById(Employees* empleado,int length,int id)
 {
     int i;
@@ -110,6 +149,14 @@ int findEmployeeById(Employees* empleado,int length,int id)
     return retorno;
 }
 
+/** \brief Dar Baja a un Empleado
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param index->Indice del Empleado a Borrar
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int removeEmployeeById(Employees* empleado,int length,int index)
 {
     int retorno=-1;
@@ -118,6 +165,14 @@ int removeEmployeeById(Employees* empleado,int length,int index)
     return retorno;
 }
 
+/** \brief Modificacion a un Empleado
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param index->Indice del Array
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int modificarEmployee(Employees* empleado,int length,int index)
 {
     int retorno=-1;
@@ -161,6 +216,14 @@ int modificarEmployee(Employees* empleado,int length,int index)
     return retorno;
 }
 
+/** \brief Ordenar Empleados por Apellido (Insertion)
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param valor->(1)Ascendente // (0)Descendente
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int sortEmployeesByLastName(Employees* empleado,int length,int valor)
 {
     int i;
@@ -184,6 +247,14 @@ int sortEmployeesByLastName(Employees* empleado,int length,int valor)
     return retorno;
 }
 
+/** \brief Ordenar por Qsort
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param limite_izq->Limite del Array (0)
+ * \param limite_der->Limite del Array (lengthArray)
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int quick_sortLastname(Employees*empleado,int limite_izq,int limite_der)
 {
     int izq;
@@ -216,6 +287,14 @@ int quick_sortLastname(Employees*empleado,int limite_izq,int limite_der)
     return 0;
 }
 
+/** \brief Ordenar por Qsort
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param limite_izq->Limite del Array (0)
+ * \param limite_der->Limite del Array (lengthArray)
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int quick_sortSector(Employees*empleado,int limite_izq,int limite_der)
 {
     int izq;
@@ -259,6 +338,13 @@ void qsSector(Employees* empleado,int length)
     quick_sortSector(empleado,0,(length-1));
 }
 
+/** \brief Imprime Empleados
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int printEmployees(Employees* empleado,int length)
 {
     int retorno=-1;
@@ -269,15 +355,25 @@ int printEmployees(Employees* empleado,int length)
         {
             if(empleado[i].isEmpty==0)
             {
-                printf("Nombre: [%s]-Apellido: [%s]-Salario: [$%.2f]-Sector nro[%d]-ID[%d]\n",empleado[i].name,empleado[i].lastName,empleado[i].salary,empleado[i].sector,empleado[i].id);
+                printf("Nombre: [%s]-Apellido: [%s]-Salario: [$%.2f]-Sector nro[%d]"
+                       "-ID[%d]\n",empleado[i].name,empleado[i].lastName,
+                       empleado[i].salary,empleado[i].sector,empleado[i].id);
                 retorno=0;
             }
-
         }
     }
     return retorno;
 }
 
+/** \brief Calcula el total de salario y el promedio
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param sumaSalario->Acumula el total de los salario
+ * \param promedio->Promedio entre los empleados y el salario total
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* promedio)
 {
     int retorno=-1;
@@ -301,6 +397,15 @@ int totalSalarios(Employees* empleado,int length,float* sumaSalario,float* prome
     return retorno;
 }
 
+/** \brief Calcula los Empleados que superan el promedio
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param length->Limite del Array
+ * \param promedio->Promedio entre los empleados y el salario total
+ * \param empleadosSP->Cantidad de Empleados que supera el promedio
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int empleadosSuperaPromedio(Employees* empleado,int length,float* promedio,int* empleadosSP)
 {
     int retorno=-1;
@@ -326,6 +431,11 @@ int empleadosSuperaPromedio(Employees* empleado,int length,float* promedio,int* 
     return retorno;
 }
 
+/** \brief Menu de Empleados
+
+ * \return (0) OK
+ *
+ */
 void menuEmployees(void)
 {
     Employees empleado[QTY_EMPLEADOS];
@@ -343,7 +453,8 @@ void menuEmployees(void)
     int empleadosSP;
     do
     {
-        printf("1-ALTA DE EMPLEADO\n2-MODIFICACION DE EMPLEADO\n3-BAJA DE EMPLEADO\n4-INFORMES\n5-SALIR");
+        printf("1-ALTA DE EMPLEADO\n2-MODIFICACION DE EMPLEADO\n3-BAJA DE EMPLEADO\n4"
+               "-INFORMES\n5-SALIR");
         utn_getEntero(&opcion,1,"INGRESE OPCION: ","ERROR",1,5);
         system("clear");
         switch(opcion)
@@ -395,7 +506,8 @@ void menuEmployees(void)
                 }
                 system("clear");
                 __fpurge(stdin);
-                printf("INFORMES\n(1)Listar Empleados por Apellido y Sector\n(2)Total,Promedio Salario-Cantidad de Empleados que superan el Promedio\n(3)ATRAS...");
+                printf("INFORMES\n(1)Listar Empleados por Apellido y Sector\n(2)Total,"
+                       "Promedio Salario-Cantidad de Empleados que superan el Promedio\n(3)ATRAS...");
                 sumaSalario=0.0;
                 promedio=0.0;
                 empleadosSP=0;
@@ -417,7 +529,9 @@ void menuEmployees(void)
                             case 2:
                                 totalSalarios(empleado,QTY_EMPLEADOS,&sumaSalario,&promedio);
                                 empleadosSuperaPromedio(empleado,QTY_EMPLEADOS,&promedio,&empleadosSP);
-                                printf("El Total de los Salarios es: $%.2f\nEl promedio es: $%.2f\nLa cantidad de EMPLEADOS que supera el Promedio es [%d]\n",sumaSalario,promedio,empleadosSP);
+                                printf("El Total de los Salarios es: $%.2f\nEl promedio "
+                                       "es: $%.2f\nLa cantidad de EMPLEADOS que supera el Promedio es [%d]\n"
+                                       ,sumaSalario,promedio,empleadosSP);
                                 break;
                             default:
                                 break;
@@ -432,6 +546,17 @@ void menuEmployees(void)
     }while(opcion!=5);
 }
 
+/** \brief Carga Empleados con datos Forzados
+ *
+  * \param empleado->Array de dato tipo Employees
+ * \param index->Posicion del Array
+ * \param nombre->Nombre del Empleado
+ * \param apellido->Apellido del Empleado
+ * \param salario->Sueldo del Empleado
+ * \param sector->Sector del Empleado
+ * \return (-1) ERROR // (0) OK
+ *
+ */
 int setEmployees(Employees*empleado,int index,char*nombre,char*apellido,float salario,int sector)
 {
     int retorno=-1;
