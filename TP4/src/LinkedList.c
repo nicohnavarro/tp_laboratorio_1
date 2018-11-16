@@ -626,7 +626,7 @@ LinkedList* ll_filter(LinkedList* this,int (*pFunc)(void*))
     return laFiltrada;
 }
 
-void* ll_startIter(LinkedList* this)
+Node* ll_startIter(LinkedList* this)
 {
    return this->pFirstNode;
 }

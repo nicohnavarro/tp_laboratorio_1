@@ -54,3 +54,8 @@ int ll_containsAll(LinkedList* this,LinkedList* this2);
 LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
+LinkedList* ll_filter(LinkedList* this,int (*pFunc)(void*));
+Node* ll_startIter(LinkedList* this);
+void* ll_getNext(LinkedList* this);
+void* ll_getNextNode(LinkedList* this);
+int ll_map(LinkedList* this,int (*pFunc)(void*));
