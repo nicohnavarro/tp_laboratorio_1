@@ -133,3 +133,43 @@
 
 1541046196 /home/nicolas/UTN/programacion_1/TP3/Linux_64/Controller.h
 
+1541127142 source:/home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/Employee.c
+	"Employee.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1541127131 /home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/Employee.h
+
+1541127131 source:/home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1541046196 /home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/LinkedList.h
+
+1541046196 /home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/Controller.h
+
+1541046196 source:/home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1541046196 source:/home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1541046196 /home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/utn.h
+
+1543409118 source:/home/nicolas/UTN/tpLaboratorio1/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
